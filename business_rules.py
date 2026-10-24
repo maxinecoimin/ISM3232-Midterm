@@ -26,7 +26,7 @@ def calculate_quote(daily_rate: float, days: int, contractor: bool = False) -> f
     cost = calculate_rental_cost(daily_rate, days)
     discount = get_rental_discount(days, contractor)
     discounted_cost = cost * (1 - discount)
-    if discounted_cost < 150.00:  # waiver threshold
+    if discounted_cost <= 150.00:  # waiver threshold
         return discounted_cost + 25.00  # waiver fee
     else:
         return discounted_cost

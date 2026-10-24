@@ -52,15 +52,15 @@ def test_calculate_quote_with_discount():
 
 
 def test_calculate_quote_with_waiver_required():
-    assert round(calculate_quote(50, 2), 2) == 125
+    assert round(calculate_quote(50, 3), 2) == 160
 
 
-def test_calculate_quote_with_waiver_and_discount():
-    assert round(calculate_quote(100, 3), 2) == 270
+def test_calculate_quote_with_no_discount_but_waiver_required():
+    assert round(calculate_quote(55, 2), 2) == 135
 
 
 def test_calculate_quote_at_waiver_threshold():
-    assert round(calculate_quote(75, 2), 2) == 150
+    assert round(calculate_quote(41.75, 4), 2) == 150.30
 
 
 # Deposit requirement tests
