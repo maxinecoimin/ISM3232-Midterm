@@ -1,8 +1,13 @@
-#Main.py
-from itertools import count
-from shlex import quote
+# Main.py
 
-from business_rules import calculate_quote, requires_deposit, needs_inspection, total_quoted, largest_rental, format_rental_line
+from business_rules import (
+    calculate_quote,
+    format_rental_line,
+    largest_rental,
+    needs_inspection,
+    requires_deposit,
+    total_quoted,
+)
 
 rentals = [
     {"customer": "Alvarez", "daily_rate": 60.00, "days": 2, "contractor": False},
@@ -17,13 +22,19 @@ rentals = [
 
 print("Ridgeline Tool Rental - Rental Report")
 for rental in rentals:
-    quote = calculate_quote(rental["daily_rate"], rental["days"], rental.get("contractor", False))
+    quote = calculate_quote(
+        rental["daily_rate"], rental["days"], rental.get("contractor", False)
+    )
     deposit = requires_deposit(quote)
     inspection = needs_inspection(rental["days"], quote)
     print(format_rental_line(rental["customer"], quote, deposit, inspection))
 print(f"Rentals: {len(rentals)}")
 print(f"Total Quoted: ${total_quoted(rentals):.2f}")
-print(f"Average Quote: ${total_quoted(rentals)/len(rentals):.2f}")
+print(f"Average Quote: ${total_quoted(rentals) / len(rentals):.2f}")
 print(f"Largest Quote: {largest_rental(rentals)}")
-print(f"Deposits Required: {sum(1 for rental in rentals if requires_deposit(calculate_quote(rental['daily_rate'], rental['days'], rental.get('contractor', False))))}")
-print(f"Inspections Required: {sum(1 for rental in rentals if needs_inspection(rental['days'], calculate_quote(rental['daily_rate'], rental['days'], rental.get('contractor', False))))}")
+print(
+    f"Deposits Required: {sum(1 for rental in rentals if requires_deposit(calculate_quote(rental['daily_rate'], rental['days'], rental.get('contractor', False))))}"
+)
+print(
+    f"Inspections Required: {sum(1 for rental in rentals if needs_inspection(rental['days'], calculate_quote(rental['daily_rate'], rental['days'], rental.get('contractor', False))))}"
+)

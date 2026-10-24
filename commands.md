@@ -11,6 +11,8 @@ Day 1
     cd ~/ism3232/midterm
  # creating the virtual evironment
     python3 -m venv .venv && source .venv/bin/activate
+    pip install pytest ruff && pip freeze > requirements.txt
+    echo '.venv/' > .gitignore && echo '__pycache__/' >> .gitignore
  # creating the empty files and test folders - the test ones weren't set up correctly with this step
     touch business_rules.py main.py commands.md README.md requirements.txt .gitignore tests__init__.py tests/test_business_rules.py 
     touch tests
