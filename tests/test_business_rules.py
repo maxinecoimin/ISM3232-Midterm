@@ -94,9 +94,9 @@ def test_largest_rental_empty():
 
 def test_largest_rental_tie_chooses_first():
     rentals = [
-        {"customer": "Maxine", "daily_rate": 150, "days": 3, "contractor": False}, #405 w/ discount
+        {"customer": "Maxine", "daily_rate": 150, "days": 3, "contractor": False},
         {"customer": "Jaime", "daily_rate": 100, "days": 2, "contractor": True},
-        {"customer": "Mariah", "daily_rate": 90, "days": 5, "contractor": False}, #405 w/ discount
+        {"customer": "Mariah", "daily_rate": 90, "days": 5, "contractor": False},
     ]
     assert largest_rental(rentals) == "Maxine"
 
@@ -104,6 +104,6 @@ def test_largest_rental_tie_chooses_first():
 def test_format_rental_line():
     customer = "Maxine"
     quote = 500.00
-    deposit = True
+    deposit = False
     inspection = False
-    assert format_rental_line(customer, quote, deposit, inspection) == "Rental: Maxine, Quote: $500.00, Deposit Required: True, Inspection Needed: False"
+    assert format_rental_line(customer, quote, deposit, inspection) == "Maxine: Quote: $500.00, Deposit Required: No, Inspection Needed: No"

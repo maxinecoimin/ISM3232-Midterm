@@ -47,20 +47,24 @@ def largest_rental(rentals: list) -> str:
     """Finds the name of the customer with the largest rental quote."""
     if not rentals:
         return ""
-    largest_customer = ""
-    for rental in rentals[1:]:
+    largest_rental = rentals[0]
+    largest_quote = calculate_quote(
+        largest_rental["daily_rate"],
+        largest_rental["days"],
+        largest_rental.get("contractor", False)
+    )
+    
+    for rental in rentals:
         q = calculate_quote(
-            rental["daily_rate"], 
-            rental["days"], 
+            rental["daily_rate"],
+            rental["days"],
             rental.get("contractor", False)
         )
-        if largest_customer == "" or q > calculate_quote(
-            largest_customer["daily_rate"], 
-            largest_customer["days"], 
-            largest_customer.get("contractor", False)
-        ):
-            largest_customer = rental
-    return largest_customer["customer"]
+        if q > largest_quote:
+            largest_quote = q
+            largest_rental = rental
+            
+    return largest_rental["customer"]
 
 def format_rental_line(customer: str, quote: float, deposit: bool, inspection: bool) -> str:
     """Formats a single line of rental information for display."""
